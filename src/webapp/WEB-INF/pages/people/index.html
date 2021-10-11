@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Страница Cars</title>
+    <style>
+        table th, table td {padding: 5px;}
+        .row  {
+            font-style: italic;
+        }
+        .even-row {
+            color: black;
+        }
+        .odd-row {
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+
+<div>
+    <h1>Список пользователей</h1>
+    <h2><a href="/people/new"> Добавить нового пользователя</a></h2>
+    <table border="1">
+        <tr>
+            <th>Количество</th>
+            <th>Имя</th>
+            <th>Фамилия</th>
+            <th>Эл.Почта</th>
+            <th>Редактировать</th>
+            <th>Удалить</th>
+        </tr>
+        <tr th:each="user, state : ${people}"
+            class="row" th:classappend="${state.odd} ? 'odd-row' : 'even-row'">
+            <td th:text="${state.count}">Количество</td>
+            <td th:text="${user.firstName}">Имя</td>
+            <td th:text="${user.lastName}">Фамилия</td>
+            <td th:text="${user.email}">Эл.Почта</td>
+            <td><a th:href="@{{id}/edit (id=${user.getId()})}">Редактировать</a></td>
+            <td>
+                <form th:method="DELETE" th:action="@{/people/{id}(id=${user.getId()})}">
+                    <input type="submit" value="Удалить">
+                </form>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
