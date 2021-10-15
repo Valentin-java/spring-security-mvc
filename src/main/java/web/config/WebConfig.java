@@ -8,6 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
@@ -82,6 +83,7 @@ public class WebConfig implements WebMvcConfigurer {
         dataSource.setUsername(env.getRequiredProperty("db.username"));
         dataSource.setPassword(env.getRequiredProperty("db.password"));
 
+        //для пула соединений
         dataSource.setInitialSize(Integer.valueOf(env.getRequiredProperty("db.initialSize")));
         dataSource.setMinIdle(Integer.valueOf(env.getRequiredProperty("db.minIdle")));
         dataSource.setMaxIdle(Integer.valueOf(env.getRequiredProperty("db.maxIdle")));

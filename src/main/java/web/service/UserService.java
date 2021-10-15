@@ -11,4 +11,5 @@ public interface UserService {
     User getUserById(Long id);
     void cleanDb();
     void removeUserById(long id);
+    User findByFirstName(String firstName);
 }

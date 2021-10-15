@@ -32,25 +32,25 @@ public class PeopleController {
     @PatchMapping("/{id}")
     public String update(@ModelAttribute("person") User user, @PathVariable("id") long id) {
         userService.update(id, user);
-        return "redirect:index";
+        return "redirect:people/index";
     }
 
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") long id) {
         userService.removeUserById(id);
-        return "redirect:index";
+        return "redirect: people/index";
     }
 
     @GetMapping("/new")
     public String create(Model model) {
         model.addAttribute("person", new User());
-        return "people/new";
+        return "/people/new";
     }
 
     @PostMapping()
     public String add(@ModelAttribute("person") User user) {
         userService.add(user);
-        return "redirect:people/index";
+        return "people/index";
     }
 
 }
