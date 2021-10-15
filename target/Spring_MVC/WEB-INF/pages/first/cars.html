@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Страница Cars</title>
+    <style>
+        table th, table td {padding: 5px;}
+        .row  {
+            font-style: italic;
+        }
+        .even-row {
+            color: black;
+        }
+        .odd-row {
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+
+<p>
+    Введите в адресной строке параметр count. По умолчанию введен параметр "1".
+</p>
+
+<div>
+    <h1>Автомобили</h1>
+    <table border="1">
+        <tr>
+            <th>Номер</th>
+            <th>Модель</th>
+            <th>Страна</th>
+            <th>Год</th>
+        </tr>
+        <tr th:each="car, state : ${messages}"
+            class="row" th:classappend="${state.odd} ? 'odd-row' : 'even-row'">
+            <td th:utext="${state.count}">No</td>
+            <td th:utext="${car.model}">Модель</td>
+            <td th:utext="${car.country}">Страна</td>
+            <td th:utext="${car.year}">Год</td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
